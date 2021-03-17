@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+        <title>Title</title>
+        <meta name="description" content="The HTML5 Herald">
+    </head>
+    <body>
+        <script>
+            // Exercici 1
+            console.log('Hola mundo');
+
+            // Exercici 2
+            alert("Me llamo Rocío!");
+
+            // Exercici 3
+            const name = 'Rocío';
+            const surname = 'Martínez';
+            console.log(name + ' ' + surname);
+
+            // Exercici 4
+            const number1 = 34;
+            const number2 = 56;
+            console.log('La suma entre ' + number1 + ' y ' + number2 + ' es ' + (number1 + number2));
+
+            // Exercici 5
+            const nota_examen = 4.6;
+            if (nota_examen <= 5) {
+                alert('Ohh has suspendido el examen con un ' + nota_examen);
+            } else {
+                alert('Has aprobado el examen con un ' + nota_examen);
+            }
+
+            // Exercici 6
+            const sentence = 'Tinc un cotxe de color blau';
+            const sentence1 = sentence.replaceAll('blau', 'verd');
+            console.log(sentence1);
+            const sentence2 = sentence.replaceAll('o', 'u');
+            console.log(sentence2);            
+
+            // Exercici 7
+            let objects = ['taula', 'cadira', 'ordinador', 'libreta'];
+            for(let i = 0; i < objects.length; i++) {
+                console.log("L'objecte " + objects[i] + " està a la posiciò " + i);
+            }
+
+            // Exercici 8
+            function calculadora(operador, valor1, valor2) {
+                switch (operador) {
+                case 'resta':
+                    console.log(valor1 - valor2);
+                    break;
+                case 'suma':
+                    console.log(valor1 + valor2);
+                    break;
+                case 'multipicacion':
+                    console.log(valor1 * valor2);
+                    break;
+                }
+            }
+                
+            const resultat = calculadora('resta',40,20);
+
+            // Nivell 2
+            // Exercici 1
+            function calculadora2(operador, valor1, valor2) {
+                switch (operador) {
+                case 'resta':
+                    console.log(valor1 - valor2);
+                    break;
+                case 'suma':
+                    console.log(valor1 + valor2);
+                    break;
+                case 'multiplicacion':
+                    console.log(valor1 * valor2);
+                    break;
+                case 'division':
+                    if(valor1 === 0 || valor2 === 0) {
+                        return 0;
+                    } else {
+                        console.log(valor1 / valor2);
+                    }
+                    break;
+                }
+            }
+                
+            const resultat2 = calculadora2('resta',40,20);
+
+        </script>
+    </body>
+</html>

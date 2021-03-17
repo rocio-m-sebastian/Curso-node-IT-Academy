@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+        <title>Title</title>
+        <meta name="description" content="The HTML5 Herald">
+        <style>
+            body {
+                background: #e3eaf1;
+            }
+
+            .calculator {
+                background: #fff;
+                border-radius: 4px;	
+                box-shadow: 2px 2px 2px gray;
+                font-family: Arial;
+                margin: 0 auto;
+                padding: 15px;
+                position: relative;	 
+                width: 290px;
+            }
+
+            .calculator__top {
+                display: flex;
+                justify-content: space-between;
+                margin: 5px;
+            }
+
+            .calculator__input {
+                background: #ffffff;
+                border-radius: 5px;
+                border: 1px solid #e3eaf1;
+                color: #888888;
+                cursor: pointer;
+                padding: 10px;
+                text-align: center;
+                width: 70%;
+            }
+
+            .calculator__clear {
+                background: #e3eaf1;
+                border-radius: 5px;
+                color: #888888;
+                cursor: pointer;
+                padding: 10px;
+                text-align: center;
+                width: 12%;
+            }
+
+            .calculator__buttons {
+                display: flex;
+                flex-wrap: wrap;
+                margin: 0 auto;
+                padding: 0;
+            }
+
+            .calculator__buttons li {
+                list-style: none;
+                width: 25%;
+            }
+
+            .calculator__buttons li > span,
+            .calculator__btn-equal > span { 
+                border-radius: 5px;
+                cursor: pointer;
+                display: inline-block;
+                margin: 5px;
+                padding: 10px;
+                text-align: center;
+                width: 60%;
+            }
+
+            .calculator__number > span {
+                background: #e3eaf1;
+                color: #888888;
+            }
+
+            .calculator__number span:hover {
+                background: #c0c9d2;
+                color: #fff;
+            }
+
+            .calculator__btn-operator > span {
+                background: #ffe5ee;
+            }
+
+            .calculator__btn-operator span:hover {
+                background: #f63678;
+                color: #fff;
+            }
+
+            .calculator__btn-c {
+                background: #c0c9d2;
+                color: #fff;
+            }
+
+            .calculator__btn-c:hover {
+                background: #99a5b0;
+            }
+
+            .calculator__btn-equal {
+                flex-grow: 1;
+            }
+
+            .calculator__btn-equal > span {
+                background: #f63678;
+                color: #fff;
+            }
+
+            .calculator__btn-equal span:hover {
+                background: #e41b61;
+                color: #fff;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="calculator">
+            <div class="calculator__top">
+                <div class="calculator__input" id="js-input">
+                    <div id="js-operation"></div>
+                </div>
+			    <div class="calculator__clear calculator__btn-c" id="js-c">C</div>
+            </div>
+            <ul class="calculator__buttons">
+                <li class="calculator__number"><span>1</span></li>
+                <li class="calculator__number"><span>2</span></li>
+                <li class="calculator__number"><span>3</span></li>
+                <li class="calculator__btn-operator"><span>+</span></li>
+                <li class="calculator__number"><span>4</span></li>
+                <li class="calculator__number"><span>5</span></li>
+                <li class="calculator__number"><span>6</span></li>
+                <li class="calculator__btn-operator"><span>x</span></li>
+                <li class="calculator__number"><span>7</span></li>
+                <li class="calculator__number"><span>8</span></li>
+                <li class="calculator__number"><span>9</span></li>
+                <li class="calculator__btn-operator"><span>-</span></li>
+                <li class="calculator__number"><span>0</span></li>
+                <li class="calculator__btn-operator"><span>.</span></li>
+                <li class="calculator__btn-operator"><span>÷</span></li>
+                <div class="calculator__btn-equal" id="js-equal"><span>=</span></div>
+			 </ul>
+        </div>
+
+        <script>
+            const htmlOperationInput = document.querySelector('#js-operation');
+            const htmlEqualBtn = document.querySelector('#js-equal');
+            const htmlC = document.querySelector('#js-c');
+            const htmlBtns = document.querySelectorAll('li');
+
+            const calculadora2 = (operador, valor1, valor2) => {
+                let result = '';
+                switch (operador) {
+                case 'resta':
+                    result = valor1 - valor2;
+                    return result;
+                    break;
+                case 'suma':
+                    result = valor1 + valor2;
+                    return result;
+                    break;
+                case 'multiplicacion':
+                    result = valor1 * valor2;
+                    return result;
+                    break;
+                case 'division':
+                    if(valor1 === 0 || valor2 === 0) {
+                        return 0;
+                    } else {
+                        result = valor1 / valor2;
+                        return result;
+                    }
+                    break;
+                }
+            }
+
+            let operation = '';
+            for(let i = 0; i < htmlBtns.length; i++) {
+                htmlBtns[i].addEventListener('click', () => {
+                    let numberSrt = htmlBtns[i].querySelector('span').innerText;
+                    operation = operation.concat(numberSrt);
+                    htmlOperationInput.innerText = operation;
+                })
+            }
+    
+            htmlEqualBtn.addEventListener('click', () => {
+                const operationClean = operation.replace(/ /g,'');
+                if(operation.includes('+')) {
+                    const operador = 'suma';
+                    const positionOperator = operation.indexOf('+');
+                    const valor1 = Number(operation.slice(0, positionOperator));
+                    const valor2 = Number(operation.slice(positionOperator + 1));
+                    htmlOperationInput.innerText = calculadora2(operador, valor1, valor2);   
+                } else if (operation.includes('-')) {
+                    const operador = 'resta';
+                    const positionOperator = operation.indexOf('-');
+                    const valor1 = Number(operation.slice(0, positionOperator));
+                    const valor2 = Number(operation.slice(positionOperator + 1));
+                    htmlOperationInput.innerText = calculadora2(operador, valor1, valor2);
+                } else if (operation.includes('x')) {
+                    const operador = 'multiplicacion';
+                    const positionOperator = operation.indexOf('x');
+                    const valor1 = Number(operation.slice(0, positionOperator));
+                    const valor2 = Number(operation.slice(positionOperator + 1));
+                    htmlOperationInput.innerText = calculadora2(operador, valor1, valor2); 
+                } else if (operation.includes('÷')) {
+                    const operador = 'division';
+                    const positionOperator = operation.indexOf('÷');
+                    const valor1 = Number(operation.slice(0, positionOperator));
+                    const valor2 = Number(operation.slice(positionOperator + 1));
+                    htmlOperationInput.innerText = calculadora2(operador, valor1, valor2); 
+                }
+            });
+
+            htmlC.addEventListener('click', () => {
+                htmlOperationInput.innerText = ''; 
+                operation = '';
+            });
+
+            // Nota:
+            // Faltarían varias cosas en este desarrollo como:
+            // que no se puedan poner varios operadores,
+            // solo evalua operaciones con dos operadores, 
+            // etc, etc.
+            // Pero entiendo que en propisito del ejeccicio es usar la fución del ejercicio anterior...
+        </script>
+    </body>
+</html>
