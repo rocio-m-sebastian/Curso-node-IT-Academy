@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+        <title>Title</title>
+        <style>
+            body {
+                background: #e3eaf1;
+            }
+
+            .nivel3 {
+                background: #fff;
+                border-radius: 4px;	
+                box-shadow: 2px 2px 2px gray;
+                display: flex;
+                flex-wrap: wrap;
+                font-family: Arial;
+                justify-content: center;
+                margin: 0 auto;
+                max-width: 350px;
+                padding: 15px;
+                position: relative;
+            }
+
+            button {
+                width: 25%;
+                margin: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="nivel3">
+            <button id="js-btn1">Exercici 1</button>
+            <button id="js-btn2">Exercici 2</button>
+            <button id="js-btn3">Exercici 3</button>
+            <button id="js-btn4">Exercici 4</button>
+            <button id="js-btn5">Exercici 5</button>
+        </div>
+
+        <script>
+            const htmlBtn1 = document.querySelector('#js-btn1');
+            const htmlBtn2 = document.querySelector('#js-btn2');   
+            const htmlBtn3 = document.querySelector('#js-btn3');          
+            const htmlBtn4 = document.querySelector('#js-btn4');          
+            const htmlBtn5 = document.querySelector('#js-btn5');                             
+
+            // Exercici 1
+            const name = ['r', 'o', 'c', 'i', 'o'];
+            const exercici1 = (arr) => {
+                console.log('htmlBtn1');
+                for(let i = 0; i < arr.length; i++) {
+                    console.log(arr[i]);
+                }
+            }
+
+            // Exercici 2
+            const exercici2 = (arr) => {
+                for(let i = 0; i < arr.length; i++) {
+                    if(arr[i] === 'a' || arr[i] === 'e' || arr[i] === 'i' || arr[i] === 'o' || arr[i] === 'u') {
+                        console.log('He trobat la VOCAL: ' + arr[i]);
+                    } else if (typeof arr[i] === 'number') {
+                        console.log('Els noms de persones no contenen el número: ' + arr[i]);
+                    } else {
+                        console.log('He trobat la CONSONTANT: ' + arr[i]);
+                    }
+                }
+            }
+
+            // Exercici 3
+            const exercici3 = (arr) => {
+                let counts = {};
+                for(let i = 0; i < arr.length; i++) {   
+                    counts[arr[i]] = counts[arr[i]] ? counts[arr[i]] + 1 : 1;
+                }
+                console.log(counts);
+            }
+
+            // Exercici 4
+            const surname = ['m', 'a', 'r', 't', 'i', 'n', 'e', 'z'];
+
+            const exercici4 = (arr1, arr2) => {
+                const fullname = arr1.concat(arr2);
+                const position = arr1.length;
+                fullname.splice(position, 0, ' ');
+                console.log(fullname);
+            }
+
+            // Nivell 2
+            const str = `Una dirección de correo electrónico es la dirección que utiliza para recibir y enviar correos electrónicos. Se muestra a los destinatarios de sus correos electrónicos para que sepan quién le envió un correo electrónico. Cada dirección de correo electrónico sólo se puede asignar una vez en todo el mundo y, por lo tanto, está disponible exclusivamente para usted. No puede cambiar las direcciones de correo electrónico, pero puede eliminarlas en cualquier momento. Una dirección de correo electrónico consiste en el signo @ (arroba), el nombre de usuario delante y el dominio detrás, por ejemplo, nombre-de-usuario@ionos.es: La parte del dominio depende del dominio bajo el cual se crea la dirección de correo electrónico: en nuestro ejemplo es ionos.es. Esta información varía de proveedor a proveedor, por lo que una parte del dominio también puede ser gmail.com o gmx.es si utiliza una dirección de correo electrónico de estos proveedores. Si ha registrado su propio dominio, por ejemplo, www.el-nombre-de-sus-sueños.es, las direcciones de correo electrónico que configura para el dominio lo tienen como parte del dominio (nombre-de-usuario@el-nombre-de-sus-sueños.es o nombre-de-usuario@el-nombre-de-sus-sueños.ES). El nombre de usuario es la parte de una dirección de correo electrónico que puede seleccionar libremente en la medida de lo posible. Puede, por ejemplo, utilizar su propio nombre o el nombre o departamento de una empresa. Si utiliza una dirección de correo electrónico con un proveedor de correo como gmail.com o gmx.es, es posible que la combinación con la parte del dominio deseada ya esté registrada. En este caso, deberá considerar alternativas para el nombre de usuario de su dirección de correo electrónico. Si utiliza su propio dominio, estas restricciones no se aplican porque sólo usted puede crear direcciones de correo electrónico que coincidan con su propio dominio. En resumen, nombre-de-usuario@ionos.es es un email`; 
+
+            const extractEmails = (text) => {
+                let emails = text.match(/([a-zA-ZÑñ0-9._-]+@[a-zA-ZÑñ0-9._-]+\.[a-zA-ZÑñ0-9_-]+)/gi);
+                const uniqueEmails = [];
+                for(let i = 0; i < emails.length; i++) {
+                    if(!uniqueEmails.includes(emails[i].toLowerCase())) {
+                        uniqueEmails.push(emails[i].toLowerCase());
+                    }
+                }
+                console.log(uniqueEmails);          
+            }
+
+            htmlBtn1.addEventListener('click', () => exercici1(name));
+            htmlBtn2.addEventListener('click', () => exercici2(name)); 
+            htmlBtn3.addEventListener('click', () => exercici3(name));   
+            htmlBtn4.addEventListener('click', () => exercici4(name, surname)); 
+            htmlBtn5.addEventListener('click', () => extractEmails(str));                                                                             
+        </script>
+    </body>
+</html>
