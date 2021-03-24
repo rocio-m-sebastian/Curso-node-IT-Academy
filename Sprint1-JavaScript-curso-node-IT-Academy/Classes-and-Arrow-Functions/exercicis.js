@@ -1,12 +1,12 @@
 // Nivell 1
 // Exercici 1
-const name = 'María';
-const surname = 'Martín';
+const num1 = 5;
+const num2 = 6;
 
-((n, s) => {
-    const fullMme = `${n} ${s}`
-    console.log(fullMme);
-})(name, surname);
+((n1, n2) => {
+    const suma = n1 + n2;
+    console.log(suma);
+})(num1, num2);
 
 // Nivell 2
 // Exercici 1
@@ -36,9 +36,11 @@ player.decirNombre();
 
 // Nivell 3
 // Exercici 1
-function User(first, last) {
-  this.firstName = first;
-  this.lastName = last;
+let User = class User {
+  constructor(first, last) {
+    this.firstName = first;
+    this.lastName = last;
+  }
 };
 
 const user1 = new User("María", "Martín");
