@@ -22,26 +22,23 @@ let salaries = [{
     salary: 2000
 }];
 
-const getEmpleado = (id) => {
+const getEmpleado = async(id) => {
     const employee = employees.find(x => x.id === id);
-    return new Promise((resolve, reject) => {
-        if (employee) {
-            resolve(employee);
-        } else {
-            reject('no one with this id');
-        }
-    })
+    if(employee) {
+        return employee;
+    }
+    else {
+        throw new Error('no one with this id');
+    }
 };
 
-const getSalario = (employee) => {
+const getSalario = async(employee) => {
     const e = salaries.find(x => x.id === employee.id);
-    return new Promise((resolve, reject) => {
-        if (e) {
-            resolve(e.salary);
-        } else {
-            reject('the employee does not exist');
-        }
-    })
+    if (e) {
+        return e.salary;
+    } else {
+        throw new Error('the employee does not exist');
+    }
 };
 
 
@@ -49,10 +46,15 @@ const getSalario = (employee) => {
 async function init(id) {
     const em = await getEmpleado(id);
     const emSalary = await getSalario(em)
-    console.log(emSalary);
+    return `${em.name} tiene un salario de ${emSalary}$`;
 }
 
-init(1);
+init(1).then( message => {
+    console.log(message);
+})
+.catch( error => {
+    console.log('error :', error);
+});
 
 // Nivell 2
 // Exercici 1
@@ -77,7 +79,7 @@ init('Pedro');
 
 // Nivell 3
 // Exercici 1
-const sayHi = (name) => {
+const sayHi2 = (name) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (name) {
@@ -89,16 +91,16 @@ const sayHi = (name) => {
     })
 }
 
-async function init(name) {
+async function init2(name) {
     try {
-        const saludation = await sayHi(name);
+        const saludation = await sayHi2(name);
         console.log(saludation);
     } catch(err) {
         console.log(err);
     }
 }
 
-init('Pedro');
+init2('Pedro');
 
 
 
