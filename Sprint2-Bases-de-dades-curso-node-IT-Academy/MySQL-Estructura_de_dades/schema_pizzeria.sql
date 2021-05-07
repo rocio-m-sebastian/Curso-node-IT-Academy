@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
 --
--- Host: localhost    Database: pizza-shop
+-- Host: localhost    Database: pizzeria
 -- ------------------------------------------------------
 -- Server version	8.0.23
 
@@ -15,6 +15,10 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+DROP DATABASE IF EXISTS pizzeria;
+
+CREATE DATABASE pizzeria;
+USE pizzeria;
 --
 -- Table structure for table `categorias`
 --
