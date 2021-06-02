@@ -14,14 +14,17 @@ const reverseText = str =>
   .join("");
 
 async function main() {
-  const files = await leerDir(inbox);
+  try {
+    const files = await leerDir(inbox);
 
-  for (const file of files) {
-    const data = await leerArchivo(join(inbox, file), 'utf-8')
-    const archivoNuevo =  await escribirArchivo(join(outbox, file), reverseText(data))
+    for (const file of files) {
+      const data = await leerArchivo(join(inbox, file), 'utf-8')
+      const archivoNuevo =  await escribirArchivo(join(outbox, file), reverseText(data))
+      console.log(`${file} was successfully saved in the outbox!`);
+    }
+  } catch(e) {
+    console.log(e);
   }
 }
 
 main();
-
-
